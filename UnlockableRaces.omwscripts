@@ -1,0 +1,6 @@
+MENU: scripts/UnlockableRaces/utils/multiCheckbox.lua
+MENU: scripts/UnlockableRaces/utils/textSet.lua
+
+PLAYER: scripts/UnlockableRaces/settingsPlayer.lua
+LOAD: scripts/UnlockableRaces/load.lua
+PLAYER: scripts/UnlockableRaces/player.lua

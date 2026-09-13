@@ -1,0 +1,16 @@
+page_name: Unlockable Races
+page_desc: Meet new people in order to unlock their races for your next playthroughs.
+
+races_groupName: Settings
+unlockBy_name: Unlock New Races by
+unlockBy_desc: Not every NPC might have topic about their race.
+topic: Their Race Topic
+dialogue: Talking to Them
+greeting: Getting Greeted by Them
+corpse: Looting Their Corpse
+unlocked_name: Unlocked Races
+unlocked_desc: Changes take effect only after a full game reload.
+locked_name: Locked Races
+locked_desc: Changes take effect only after a full game reload.
+
+msg_newRaceUnlocked: A new path is open to you. The {race} race is now available at chargen.
