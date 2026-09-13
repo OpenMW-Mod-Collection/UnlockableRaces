@@ -57,8 +57,7 @@ M.unlockRace = function(raceId)
 end
 
 M.resyncRaceLists = function()
-    local unlocked = auxUtil.shallowCopy(settingsSection:get("unlocked"))
-    local locked = auxUtil.shallowCopy(settingsSection:get("locked"))
+    local locked, unlocked = M.getRaces()
     local changed = false
 
     for raceId in pairs(prevUnlocked) do

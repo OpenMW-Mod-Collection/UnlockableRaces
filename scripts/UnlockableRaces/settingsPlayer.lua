@@ -49,7 +49,7 @@ I.Settings.registerGroup {
             name = "unlocked_name",
             description = "unlocked_desc",
             renderer = "textSet",
-            default = auxUtil.shallowCopy(unlocked), -- userdata is le bad
+            default = unlocked, -- userdata is le bad
             argument = {
                 lower = true,
                 label = "Race Id",
@@ -60,7 +60,7 @@ I.Settings.registerGroup {
             name = "locked_name",
             description = "locked_desc",
             renderer = "textSet",
-            default = auxUtil.shallowCopy(locked),
+            default = locked,
             argument = {
                 lower = true,
                 label = "Race Id",

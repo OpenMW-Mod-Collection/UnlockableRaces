@@ -13,7 +13,7 @@ local M = {}
 
 M.storageSection = storage.playerSection("UnlockableRaces_races")
 for k, v in pairs(M.storageSection:asTable()) do
-    print(k,v)
+    print(k, v)
     for i, j in pairs(v) do
         print(i, j)
     end
@@ -39,9 +39,11 @@ for _, raceRecord in ipairs(raceRecords) do
     end
 end
 
+---@return table locked
+---@return table unlocked
 M.getRaces = function()
-    return auxUtil.shallowCopy(M.storageSection:get("locked")) or M.tdRaces,
-    auxUtil.shallowCopy(M.storageSection:get("unlocked")) or M.vanillaRaces
+    return M.storageSection:get("locked") and auxUtil.shallowCopy(M.storageSection:get("locked")) or M.tdRaces,
+        M.storageSection:get("unlocked") and auxUtil.shallowCopy(M.storageSection:get("unlocked")) or M.vanillaRaces
 end
 
 return M
