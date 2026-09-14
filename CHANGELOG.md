@@ -1,5 +1,9 @@
 # Unlockable Races of Tamriel (OpenMW)
 
+## 1.0.2
+
+- Removed leftover debug prints
+
 ## 1.0.1
 
 - Hopefully fixed the first initialization crash

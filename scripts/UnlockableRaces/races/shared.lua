@@ -12,12 +12,12 @@ local raceRecords = core.quit
 local M = {}
 
 M.storageSection = storage.playerSection("UnlockableRaces_races")
-for k, v in pairs(M.storageSection:asTable()) do
-    print(k, v)
-    for i, j in pairs(v) do
-        print(i, j)
-    end
-end
+-- for k, v in pairs(M.storageSection:asTable()) do
+--     print(k, v)
+--     for i, j in pairs(v) do
+--         print(i, j)
+--     end
+-- end
 
 M.vanillaRaces = {
     ["redguard"] = true,
