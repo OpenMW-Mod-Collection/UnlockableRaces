@@ -1,11 +1,8 @@
 ---@diagnostic disable: param-type-mismatch
 ---@omw-context player
 local I = require('openmw.interfaces')
-local auxUtil = require("openmw_aux.util")
 
 local races = require("scripts.UnlockableRaces.races.shared")
-
-local locked, unlocked = races.getRaces()
 
 I.Settings.registerPage {
     key = "UnlockableRaces",
@@ -29,9 +26,9 @@ I.Settings.registerGroup {
             renderer = 'multiCheckbox',
             default = {
                 topic    = true,
-                dialogue = true,
+                dialogue = false,
                 greeting = false,
-                corpse   = false,
+                corpse   = true,
             },
             argument = {
                 l10n = 'UnlockableRaces',
@@ -45,25 +42,17 @@ I.Settings.registerGroup {
             },
         },
         {
-            key = "unlocked",
-            name = "unlocked_name",
-            description = "unlocked_desc",
-            renderer = "textSet",
-            default = unlocked, -- userdata is le bad
+            key = 'raceUnlocked',
+            name = 'raceUnlocked_name',
+            description = 'raceUnlocked_desc',
+            renderer = 'twoColumnSet',
+            default = races.defaultUnlocked,
             argument = {
-                lower = true,
-                label = "Race Id",
-            },
-        },
-        {
-            key = "locked",
-            name = "locked_name",
-            description = "locked_desc",
-            renderer = "textSet",
-            default = locked,
-            argument = {
-                lower = true,
-                label = "Race Id",
+                width      = 200,
+                leftLabel  = 'Unlocked',
+                rightLabel = 'Locked',
+                lower      = true,
+                colorful   = true,
             },
         },
     },

@@ -2,22 +2,14 @@
 ---@omw-context load|menu|player
 local storage = require("openmw.storage")
 local core = require("openmw.core")
-local auxUtil = require("openmw_aux.util")
 
--- https://media.tenor.com/LkpkY6TdgewAAAPo/tylercarey.mp4
 local raceRecords = core.quit
     and require("openmw.types").NPC.races.records
     or require("openmw.content").races.records
 
 local M = {}
 
-M.storageSection = storage.playerSection("UnlockableRaces_races")
--- for k, v in pairs(M.storageSection:asTable()) do
---     print(k, v)
---     for i, j in pairs(v) do
---         print(i, j)
---     end
--- end
+M.storageSection = storage.playerSection("SettingsUnlockableRaces_races")
 
 M.vanillaRaces = {
     ["redguard"] = true,
@@ -39,11 +31,44 @@ for _, raceRecord in ipairs(raceRecords) do
     end
 end
 
+-- Default unlocked-state for every known race: vanilla = true, td = false.
+-- The "raceUnlocked" setting only needs to store *overrides* of this.
+M.defaultUnlocked = {}
+for raceId in pairs(M.vanillaRaces) do M.defaultUnlocked[raceId] = true end
+for raceId in pairs(M.tdRaces) do M.defaultUnlocked[raceId] = false end
+
+---@param raceId string
+---@return boolean
+M.isUnlocked = function(raceId)
+    local overrides = M.storageSection:get("raceUnlocked") or {}
+    local v = overrides[raceId]
+    if v == nil then
+        return M.defaultUnlocked[raceId] == true
+    end
+    return v == true
+end
+
 ---@return table locked
 ---@return table unlocked
 M.getRaces = function()
-    return M.storageSection:get("locked") and auxUtil.shallowCopy(M.storageSection:get("locked")) or M.tdRaces,
-        M.storageSection:get("unlocked") and auxUtil.shallowCopy(M.storageSection:get("unlocked")) or M.vanillaRaces
+    local overrides = M.storageSection:get("raceUnlocked") or {}
+    local locked, unlocked = {}, {}
+
+    for raceId in pairs(M.defaultUnlocked) do
+        if M.isUnlocked(raceId) then
+            unlocked[raceId] = true
+        else
+            locked[raceId] = true
+        end
+    end
+    -- catch any override for a race outside the known default set
+    for raceId in pairs(overrides) do
+        if M.defaultUnlocked[raceId] == nil then
+            if overrides[raceId] then unlocked[raceId] = true else locked[raceId] = true end
+        end
+    end
+
+    return locked, unlocked
 end
 
 return M

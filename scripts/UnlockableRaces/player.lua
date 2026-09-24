@@ -10,17 +10,10 @@ local core = require("openmw.core")
 local settingsCache = require("scripts.UnlockableRaces.utils.settingsCache")
 local races = require("scripts.UnlockableRaces.races.player")
 
-races.initRaces()
-
 local l10n = core.l10n("UnlockableRaces")
 local settings = settingsCache.new(
     storage.playerSection("SettingsUnlockableRaces_races"),
-    async,
-    function(key)
-        if key == "unlocked" or key == "locked" then
-            self:sendEvent("UnlockableRaces_resyncRaceLists")
-        end
-    end
+    async
 )
 
 local function tryUnlockingRace(unlocked, raceId)
@@ -38,7 +31,7 @@ local function getLockedRaceId(object)
     end
 
     local raceId = types.NPC.records[object.recordId].race
-    if not settings.locked[raceId] then
+    if races.isUnlocked(raceId) then
         return
     end
 
@@ -91,6 +84,5 @@ return {
     eventHandlers = {
         UiModeChanged = onUiModeChanged,
         DialogueResponse = onDialogueResponse,
-        UnlockableRaces_resyncRaceLists = races.resyncRaceLists,
     },
 }

@@ -8,9 +8,10 @@ topic: Their Race Topic
 dialogue: Talking to Them
 greeting: Getting Greeted by Them
 corpse: Looting Their Corpse
-unlocked_name: Unlocked Races
-unlocked_desc: Changes take effect only after a full game reload.
-locked_name: Locked Races
-locked_desc: Changes take effect only after a full game reload.
+raceUnlocked_name: Race List
+raceUnlocked_desc: |
+  Left click: move between columns.
+
+  Right click: remove.
 
 msg_newRaceUnlocked: A new path is open to you. The {race} race is now available at chargen.

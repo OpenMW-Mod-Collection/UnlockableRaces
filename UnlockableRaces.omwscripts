@@ -1,5 +1,5 @@
 MENU: scripts/UnlockableRaces/utils/multiCheckbox.lua
-MENU: scripts/UnlockableRaces/utils/textSet.lua
+MENU: scripts/UnlockableRaces/utils/twoColumnSet.lua
 
 PLAYER: scripts/UnlockableRaces/settingsPlayer.lua
 LOAD: scripts/UnlockableRaces/load.lua
