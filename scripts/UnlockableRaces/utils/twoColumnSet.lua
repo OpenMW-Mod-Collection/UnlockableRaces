@@ -373,7 +373,7 @@ I.Settings.registerRenderer('twoColumnSet', function(input, set, args)
             props = {
                 size = util.vector2(width * 2 + 3, 0),
                 text = 'Left click: move between columns.\nRight click: remove.',
-                textAlignH = ui.ALIGNMENT.Start,
+                textAlignH = ui.ALIGNMENT.Center,
                 textColor = MORROWIND_TEXT_STATES.disabled.color,
                 alpha = MORROWIND_TEXT_STATES.disabled.alpha,
             }
